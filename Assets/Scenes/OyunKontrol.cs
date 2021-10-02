@@ -1,62 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class OyunKontrol : MonoBehaviour
+public class OyunControl : MonoBehaviour
 {
-    int minSayi = 1;
-    int maxSayi = 100;
-    int tahmin;
-    bool oyunBasladi = false;
-    bool oyunBitti = false;
+    int minNumber = 1;
+    int maxNumber = 100;
+    int predict;
+    bool gameStart = false;
+    bool gameEnd = false;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Benimle Oyun Oynamak İster Misin? (E/H)");
+        Debug.Log("Would u play a game with me ? (Y/N)");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!oyunBasladi)
+        if (!gameStart)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                print("Harika ! Aklından 1-100 arasında bir sayı tut ve Enter tuşuna bas.");
+                print("Excellent ! Now pick a number between 1-100 then press 'ENTER' ");
 
             }
             else if (Input.GetKeyDown(KeyCode.H))
             {
-                print("Sen Bilirsin");
+                print("U KNOW :(");
             }
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                Kontrol();
-                oyunBasladi = true;
+                Control();
+                gameStart = true;
             }
         }
-        else if (!oyunBitti)
+        else if (!gameEnd)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                minSayi = tahmin;
-                Kontrol();
+                minNumber = predict;
+                Control();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                maxSayi = tahmin;
-                Kontrol();
+                maxNumber = predict;
+                Control();
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
-                print("Yaşasın Aklındaki Sayıyı Buldum !");
-                oyunBitti = true;
+                print("Yeaaah ! Found that.");
+                gameEnd = true;
             }
         }
     }
-    void Kontrol()
+    void Control()
     {
-        tahmin = (minSayi + maxSayi) / 2;
-        print("Aklından tuttuğun sayı" + tahmin + "mi ? Daha büyük bir sayı ise yukarı, daha küçük ise aşağı yön tuşuna bas. Doğruysa boşluk tuşuna bas.");
+        predict = (minNumber + maxNumber) / 2;
+        print("Your number was" + predict + "right ? If its bigger prees 'UP ARROW' else press 'DOWN ARROW'");
     }
 }
 
